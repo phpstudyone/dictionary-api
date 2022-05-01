@@ -9,7 +9,8 @@ const Plugin = function Plugin(options = {}) {
 
 Plugin.prototype = Object.assign(Plugin.prototype, {
     healthCheck: require('./methods/health-check'),
-    getDictionaryInfo: require('./methods/get-dictionary-info')
+    getDictionaryInfo: require('./methods/get-dictionary-info'),
+    getDictionaryList: require('./methods/get-dictionary-list'),
 });
 
 /**

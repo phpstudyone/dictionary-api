@@ -27,6 +27,12 @@ const entryPoints = function(server, plugin) {
         path: '/dictionary/info',
         handler: plugin.getDictionaryInfo,
     });
+
+    server.route({
+        method: 'GET',
+        path: '/dictionary/list/{query}/{lastId}',
+        handler: plugin.getDictionaryList,
+    });
 };
 /**
  * Export the Instance to the World
