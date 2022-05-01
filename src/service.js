@@ -6,7 +6,6 @@ const init = async () => {
 
     const server = Hapi.server({
         port: 80,
-        host: 'localhost'
     });
 
     routes.forEach(routes => server.route(routes));
