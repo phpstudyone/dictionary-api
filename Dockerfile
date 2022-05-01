@@ -4,7 +4,8 @@ RUN mkdir /project
 
 WORKDIR /project
 COPY ./src /project/src/
-ADD ./package.json  /project/
+COPY ./package.json  /project/
+COPY ./config/default.js /project/config/default.js
 RUN cd /project && npm install
 
 EXPOSE 80

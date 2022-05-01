@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/phpstudyone/dictionary-api#readme",
   "dependencies": {
+    "@hapi/glue": "^8.0.0",
     "@hapi/hapi": "^20.2.2",
-    "knex": "^2.0.0"
+    "@hapi/inert": "^6.0.5",
+    "@hapi/vision": "^6.1.0",
+    "config": "^3.3.7",
+    "hapi-swagger": "^14.3.0",
+    "knex": "^2.0.0",
+    "mysql": "^2.18.1"
   }
 }

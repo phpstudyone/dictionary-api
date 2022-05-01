@@ -1,23 +1,14 @@
 'use strict';
+const Glue     = require('@hapi/glue');
+const Manifest = require('./manifest');
 
-const Hapi = require('@hapi/hapi');
-const routes = require('./route');
-const init = async () => {
-
-    const server = Hapi.server({
-        port: 80,
+const startService = async function() {
+    const server = await Glue.compose(Manifest, {
+        relativeTo: __dirname
     });
 
-    routes.forEach(routes => server.route(routes));
-
     await server.start();
-    console.log('Server running on %s', server.info.uri);
+    server.log(['log'], 'Service started');
 };
 
-process.on('unhandledRejection', (err) => {
-
-    console.log(err);
-    process.exit(1);
-});
-
-init();
+startService();
