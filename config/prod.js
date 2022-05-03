@@ -2,8 +2,7 @@
 
 
 'use strict';
-console.log(process.env.mysql_host, 1111);
-console.log(process.env.mysql_password, 2222);
+
 module.exports = {
     'dictionary-api': {
         mysql: {

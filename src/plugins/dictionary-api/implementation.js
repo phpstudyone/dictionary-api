@@ -11,6 +11,8 @@ Plugin.prototype = Object.assign(Plugin.prototype, {
     healthCheck: require('./methods/health-check'),
     getDictionaryInfo: require('./methods/get-dictionary-info'),
     getDictionaryList: require('./methods/get-dictionary-list'),
+    postDictionaryOrder: require('./methods/post-dictionary-order'),
+    getDictionaryOrders: require('./methods/get-dictionary-orders'),
 });
 
 /**

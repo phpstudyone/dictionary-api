@@ -33,6 +33,21 @@ const entryPoints = function(server, plugin) {
         path: '/dictionary/list/{query}/{lastId}',
         handler: plugin.getDictionaryList,
     });
+
+    /**
+     * 生成学习清单
+     */
+    server.route({
+        method: 'POST',
+        path: '/dictionary/order',
+        handler: plugin.postDictionaryOrder,
+    });
+
+    server.route({
+        method: 'get',
+        path: '/dictionary/orders',
+        handler: plugin.getDictionaryOrders,
+    });
 };
 /**
  * Export the Instance to the World
