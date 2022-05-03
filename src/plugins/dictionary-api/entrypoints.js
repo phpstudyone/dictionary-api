@@ -22,16 +22,28 @@ const entryPoints = function(server, plugin) {
         }
     });
 
+    /**
+     * 获取个人学习情况
+     */
     server.route({
         method: 'GET',
-        path: '/dictionary/info',
-        handler: plugin.getDictionaryInfo,
+        path: '/person/info',
+        handler: plugin.getPersonInfo,
     });
 
     server.route({
         method: 'GET',
         path: '/dictionary/list/{query}/{lastId}',
         handler: plugin.getDictionaryList,
+    });
+
+    /**
+     * 从百度翻译中获取 keyword info
+     */
+     server.route({
+        method: 'POST',
+        path: '/dictionary/info',
+        handler: plugin.postDictionaryInfo,
     });
 
     /**
