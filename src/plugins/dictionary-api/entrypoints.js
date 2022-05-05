@@ -31,6 +31,9 @@ const entryPoints = function(server, plugin) {
         handler: plugin.getPersonInfo,
     });
 
+    /**
+     * 获取不同掌握度单词列表
+     */
     server.route({
         method: 'GET',
         path: '/dictionary/list/{query}/{lastId}',
@@ -55,16 +58,28 @@ const entryPoints = function(server, plugin) {
         handler: plugin.postOrder,
     });
 
+    /**
+     * 获取所有的 order
+     */
     server.route({
         method: 'get',
         path: '/orders',
         handler: plugin.getOrders,
     });
 
+    /**
+     * 获取指定order 的单词列表
+     */
     server.route({
         method: 'get',
         path: '/order/{id}',
         handler: plugin.getOrderInfo,
+    });
+
+    server.route({
+        method: 'post',
+        path: '/dictionary/score',
+        handler: plugin.postDictionaryScore,
     });
 };
 /**

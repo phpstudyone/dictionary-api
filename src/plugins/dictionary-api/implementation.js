@@ -15,6 +15,7 @@ Plugin.prototype = Object.assign(Plugin.prototype, {
     postOrder: require('./methods/post-order'),
     getOrders: require('./methods/get-orders'),
     getOrderInfo: require('./methods/get-order-info'),
+    postDictionaryScore: require('./methods/post-dictionary-score'),
 });
 
 /**

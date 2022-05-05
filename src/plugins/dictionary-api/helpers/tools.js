@@ -18,6 +18,15 @@ const translation = async (keyword) => {
     }
 }
 
+const scoreToLevel = (score) => {
+    if (score < 20) return 1;
+    if (score > 20 && score <= 40) return 2;
+    if (score > 40 && score <= 60) return 3;
+    if (score > 60 && score <= 80) return 4;
+    if (score > 80) return 5;
+}
+
 module.exports = {
-    translation
+    translation,
+    scoreToLevel
 }

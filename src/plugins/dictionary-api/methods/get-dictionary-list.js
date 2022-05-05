@@ -11,6 +11,10 @@ module.exports = async function (request, h) {
     if (query !== 'all') {
         allData.andWhere('pd.level', query)
     }
+    allData = await allData.limit(50);
+    allData.forEach(data => {
+        data.all_describe = JSON.parse(data.all_describe)
+    });
 
-    return await allData.limit(50);
+    return allData;
 }
