@@ -51,14 +51,20 @@ const entryPoints = function(server, plugin) {
      */
     server.route({
         method: 'POST',
-        path: '/dictionary/order',
-        handler: plugin.postDictionaryOrder,
+        path: '/order',
+        handler: plugin.postOrder,
     });
 
     server.route({
         method: 'get',
-        path: '/dictionary/orders',
-        handler: plugin.getDictionaryOrders,
+        path: '/orders',
+        handler: plugin.getOrders,
+    });
+
+    server.route({
+        method: 'get',
+        path: '/order/{id}',
+        handler: plugin.getOrderInfo,
     });
 };
 /**
