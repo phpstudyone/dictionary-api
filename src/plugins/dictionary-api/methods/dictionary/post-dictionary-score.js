@@ -1,5 +1,5 @@
 'use strict';
-const { scoreToLevel } = require('../helpers/tools')
+const { scoreToLevel } = require('../../helpers/tools')
 const moment = require('moment');
 
 module.exports = async function (request, h) {

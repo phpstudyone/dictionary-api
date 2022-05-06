@@ -1,5 +1,5 @@
 'use strict';
-const { translation } = require('../helpers/tools');
+const { translation } = require('../../helpers/tools');
 
 module.exports = async function (request, h) {
     let allData = await this.mysql('dictionary')

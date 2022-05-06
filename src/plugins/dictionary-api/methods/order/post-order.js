@@ -1,6 +1,6 @@
 'use strict';
 
-const  PersonDictionary = require('../models/PersonDictionary');
+const  PersonDictionary = require('../../models/PersonDictionary');
 
 module.exports = async function (request, h) {
     const { words } = request.payload;
