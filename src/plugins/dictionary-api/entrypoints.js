@@ -36,7 +36,7 @@ const entryPoints = function(server, plugin) {
      */
     server.route({
         method: 'GET',
-        path: '/dictionary/list/{query}/{lastId}',
+        path: '/dictionary/list/{level}/{limit?}',
         handler: plugin.getDictionaryList,
     });
 

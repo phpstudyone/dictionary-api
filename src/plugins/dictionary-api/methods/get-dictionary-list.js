@@ -1,17 +1,24 @@
 'use strict';
 
 module.exports = async function (request, h) {
-    const { query, lastId } = request.params;
-    let allData = this.mysql()
-        .select(['pd.level', 'd.describe', 'd.keyword', 'd.video', 'd.all_describe'])
-        .from('person_dictionary as pd')
-        .leftJoin('dictionary as d', 'd.id', 'pd.dictionary_id')
-        .where('pd.id', '>', lastId)
-
-    if (query !== 'all') {
-        allData.andWhere('pd.level', query)
+    let { level, limit = 50 } = request.params;
+    let sql = this.mysql('person_dictionary').select('id');
+    if (level === 'all') {
+        sql.where('level', '!=', 5)
+    } else {
+        sql.where('level', level)
     }
-    allData = await allData.limit(50);
+    const ids = await sql;
+
+    const responseIds = [];
+    for (let i = 0; i < limit; i++){
+        const random = parseInt(Math.random() * ids.length);
+        const id = ids[random].id
+        responseIds.push(id);
+    }
+
+    const allData = await this.mysql('dictionary').whereIn('id', responseIds)
+
     allData.forEach(data => {
         data.all_describe = JSON.parse(data.all_describe)
     });
