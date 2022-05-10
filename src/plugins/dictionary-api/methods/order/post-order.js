@@ -1,6 +1,6 @@
 'use strict';
 
-const  PersonDictionary = require('../../models/PersonDictionary');
+const  PersonOrder = require('../../models/PersonOrder');
 
 module.exports = async function (request, h) {
     const { words } = request.payload;
@@ -11,18 +11,20 @@ module.exports = async function (request, h) {
     existWords = existWords.map(word => word.keyword);
 
     const exceptionKeyword = words.filter(x => !existWords.includes(x));
-    const insertData = exceptionKeyword.map(keyword => ({
-        keyword,
-        all_describe: '',
-        describe: '',
-        type: 1,
-        video: ''
-    }));
+    if (exceptionKeyword.length) {
+        const insertData = exceptionKeyword.map(keyword => ({
+            keyword,
+            all_describe: '',
+            describe: '',
+            type: 1,
+            video: ''
+        }));
 
-    await this.mysql('dictionary').insert(insertData);
+        await this.mysql('dictionary').insert(insertData);
+    }
 
-    const personDictionary = new PersonDictionary(this.mysql)
-    personDictionary.insertDictionary(exceptionKeyword);
+    const personOrder = new PersonOrder(this.mysql)
+    personOrder.insertOrder(words);
 
     return exceptionKeyword;
 }

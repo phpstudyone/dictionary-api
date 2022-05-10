@@ -7,7 +7,7 @@ module.exports = async function (request, h) {
     score = parseInt(score);
     const dictionary = await this.mysql('person_dictionary').where('dictionary_id', id);
 
-    if (dictionary) {
+    if (dictionary.length) {
         const updateScore = (dictionary[0].score + score > 100) ? 100 : dictionary[0].score + score;
 
         const updateData = {
