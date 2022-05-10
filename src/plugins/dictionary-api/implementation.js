@@ -16,6 +16,9 @@ Plugin.prototype = Object.assign(Plugin.prototype, {
     getDictionaryList: require('./methods/dictionary/get-dictionary-list'),
     postDictionaryInfo: require('./methods/dictionary/post-dictionary-info'),
     postDictionaryScore: require('./methods/dictionary/post-dictionary-score'),
+    postLearnTime: require('./methods/learn-time/post-learn-time'),
+    getLearnTimes: require('./methods/learn-time/get-learn-times'),
+    getLearnTime: require('./methods/learn-time/get-learn-time'),
 });
 
 /**

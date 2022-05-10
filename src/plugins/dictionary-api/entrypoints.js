@@ -81,6 +81,24 @@ const entryPoints = function(server, plugin) {
         path: '/dictionary/score',
         handler: plugin.postDictionaryScore,
     });
+
+    server.route({
+        method: 'post',
+        path: '/learn-time',
+        handler: plugin.postLearnTime,
+    });
+
+    server.route({
+        method: 'get',
+        path: '/learn-time',
+        handler: plugin.getLearnTime,
+    });
+
+    server.route({
+        method: 'get',
+        path: '/learn-times',
+        handler: plugin.getLearnTimes,
+    });
 };
 /**
  * Export the Instance to the World
