@@ -12,7 +12,7 @@ module.exports = async function (request, h) {
         .whereIn('id', JSON.parse(ids[0].dictionary_ids))
 
     allData.forEach(data => {
-        data.all_describe = JSON.parse(data.all_describe)
+        data.all_describe = data.all_describe ? JSON.parse(data.all_describe) : []
     });
 	return allData;
 }

@@ -1,13 +1,13 @@
 const moment = require('moment');
 
-class DictionaryRepo {
+class DictionaryOrderRepo {
 	constructor(db) {
         this.table = db('person_order');
         this.db = db;
     }
 
     //找出熟练度在 60% 以下的 word 进入到 order 表.
-    insertOrder = async (words) => {
+    insertOrder = async (words, url, title) => {
 
         let allWords = await this.db('dictionary')
             .select('id')
@@ -26,8 +26,8 @@ class DictionaryRepo {
         const ids = allWords.filter(x => !moreThen60.includes(x));
         if (ids.length) {
             await this.table.insert({
-                title: '',
-                url: '',
+                title: title,
+                url: url,
                 dictionary_ids: JSON.stringify(ids),
                 create_date: moment().format('YYYY-MM-DD')
             });
@@ -35,4 +35,4 @@ class DictionaryRepo {
     }
 }
 
-module.exports = DictionaryRepo;
+module.exports = DictionaryOrderRepo;

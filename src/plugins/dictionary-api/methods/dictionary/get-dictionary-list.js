@@ -20,7 +20,7 @@ module.exports = async function (request, h) {
     const allData = await this.mysql('dictionary').whereIn('id', responseIds)
 
     allData.forEach(data => {
-        data.all_describe = JSON.parse(data.all_describe)
+        data.all_describe = data.all_describe ? JSON.parse(data.all_describe) : []
     });
 
     return allData;
