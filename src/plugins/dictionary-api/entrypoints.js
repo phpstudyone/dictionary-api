@@ -99,6 +99,12 @@ const entryPoints = function(server, plugin) {
         path: '/learn-times',
         handler: plugin.getLearnTimes,
     });
+
+    server.route({
+        method: 'get',
+        path: '/download',
+        handler: plugin.download,
+    });
 };
 /**
  * Export the Instance to the World

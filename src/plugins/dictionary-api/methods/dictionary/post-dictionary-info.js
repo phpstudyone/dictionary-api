@@ -12,12 +12,13 @@ module.exports = async function (request, h) {
     allData.forEach(async data => {
         const allDescribe = await translation(data.keyword);
         if (allDescribe) {
+            // video : https://fanyi.baidu.com/gettts?lan=en&text=${data.keyword}&spd=3&source=web
             await this.mysql('dictionary')
                 .where('id', '=', data.id)
                 .update({
                     all_describe: JSON.stringify(allDescribe),
                     describe: allDescribe[0].v,
-                    video: `https://fanyi.baidu.com/gettts?lan=en&text=${data.keyword}&spd=3&source=web`
+                    video: ``
                 });
         }
     });

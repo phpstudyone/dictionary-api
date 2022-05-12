@@ -19,6 +19,7 @@ Plugin.prototype = Object.assign(Plugin.prototype, {
     postLearnTime: require('./methods/learn-time/post-learn-time'),
     getLearnTimes: require('./methods/learn-time/get-learn-times'),
     getLearnTime: require('./methods/learn-time/get-learn-time'),
+    download: require('./methods/download'),
 });
 
 /**
