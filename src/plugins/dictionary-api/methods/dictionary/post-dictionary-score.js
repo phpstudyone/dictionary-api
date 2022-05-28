@@ -2,20 +2,18 @@
 const { scoreToLevel } = require('../../helpers/tools')
 const moment = require('moment');
 
-module.exports = async function (request, h) {
-    let { id, score } = request.payload;
-    score = parseInt(score);
-    const dictionary = await this.mysql('person_dictionary').where('dictionary_id', id);
+const singleHandler = (that) => async (id, score) => {
+    const dictionary = await that.mysql('person_dictionary').where('dictionary_id', id);
 
     if (dictionary.length) {
-        const updateScore = (dictionary[0].score + score > 100) ? 100 : dictionary[0].score + score;
-
+        let updateScore = parseInt(dictionary[0].score) + score;
+        updateScore > 100 && (updateScore = 100)
         const updateData = {
             score: updateScore,
             level: scoreToLevel(updateScore),
         }
 
-        await this.mysql('person_dictionary')
+        await that.mysql('person_dictionary')
             .where('dictionary_id', id)
             .update(updateData);
 
@@ -28,7 +26,20 @@ module.exports = async function (request, h) {
             level: scoreToLevel(score),
         };
 
-        await this.mysql('person_dictionary').insert(insertData);
+        await that.mysql('person_dictionary').insert(insertData);
+    }
+}
+
+module.exports = async function (request, h) {
+    let { id, score, data_s } = request.payload;
+
+    if (data_s && data_s instanceof Array) {
+        data_s.forEach(data => {
+            singleHandler(this)(data.id, parseInt(data.score));
+        })
+    } else {
+        score = parseInt(score);
+        singleHandler(this)(id, score);
     }
     return 'OK';
 }
