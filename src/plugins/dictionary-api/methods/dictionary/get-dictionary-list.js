@@ -2,7 +2,7 @@
 
 module.exports = async function (request, h) {
     let { level, limit = 50 } = request.params;
-    let sql = this.mysql('person_dictionary').select('id');
+    let sql = this.mysql('person_dictionary').select('dictionary_id as id');
     if (level === 'all') {
         sql.where('level', '!=', 5)
     } else {
