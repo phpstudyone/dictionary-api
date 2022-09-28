@@ -15,7 +15,7 @@ const manifest = {
         debug: {
             request: ['error']
         },
-        port  : 80,
+        port  : config.get('port') || 80,
         routes: {
             // cors: true
             cors: {

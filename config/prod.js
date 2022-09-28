@@ -4,6 +4,7 @@
 'use strict';
 
 module.exports = {
+    port: process.env.dictionary_api_port || 80,
     'dictionary-api': {
         mysql: {
             client: 'mysql',
